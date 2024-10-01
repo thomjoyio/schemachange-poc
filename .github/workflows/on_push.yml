@@ -1,4 +1,4 @@
-name: schemachange
+name: on_push
 
 # Triggers the action based on branch and path. 
 on:
