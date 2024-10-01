@@ -4,8 +4,8 @@ name: schemachange
 on:
   push:
     branches:
-      -feature/**
-      -dev
+      - feature/**
+      - dev
       - st
       - uat
       - prod
