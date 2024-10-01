@@ -3,8 +3,8 @@ name: deploy_to_env
 # Triggers the action based on branch and path. 
 on:
   pull_request:
-    type: [closed]
-    branches: [feature/**, dev, st, uat, prod]
+    types: [closed]
+    branches: [dev, st, uat, prod]
 
 jobs:   
   deploy_to_env:

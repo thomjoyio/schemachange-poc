@@ -3,7 +3,7 @@ name: schemachange
 # Triggers the action based on branch and path. 
 on:
   push:
-    branches: [feature/*, dev, st, uat, prod]
+    branches: [feature/**, dev, st, uat, prod]
 
 jobs:
   setup-and-dry-run:
