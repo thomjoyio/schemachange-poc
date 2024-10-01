@@ -1,5 +1,5 @@
-name: schemachange_deploy
-run-name: schemachange deploy to ${{ inputs.deploy_target }} by @${{ github.actor }} (${{ github.event.workflow_run.head_commit.message }})
+name: schemachange_dryrun
+run-name: schemachange dry run to ${{ inputs.deploy_target }} by @${{ github.actor }} (${{ github.event.workflow_run.head_commit.message }})
 
 # Triggers the action based on branch and path. 
 on:
@@ -11,8 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  schemachange_deploy:
-    needs: [schemachange_dryrun]
+  schemachange_dryrun:
     runs-on: ubuntu-latest
     steps:
       # Check out repo under $GITHUB_WORKSPACE
@@ -27,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: schemachange deploy
+      - name: schemachange dry-run
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_USERNAME: ${{ secrets.SNOWFLAKE_USERNAME }}
@@ -36,7 +35,7 @@ jobs:
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
-          schemachange deploy \
+          schemachange deploy -v --dry-run \
             -f scripts \
             -a $SNOWFLAKE_ACCOUNT \
             -u $SNOWFLAKE_USERNAME \
