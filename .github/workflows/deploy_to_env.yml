@@ -4,7 +4,7 @@ name: deploy_to_env
 on:
   pull_request:
     type: [closed]
-    branches: [dev, st, uat, prod]
+    branches: [feature/**, dev, st, uat, prod]
 
 jobs:   
   deploy_to_env:
