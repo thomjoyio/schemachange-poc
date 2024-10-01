@@ -30,6 +30,18 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      # Check out repo under $GITHUB_WORKSPACE
+      - name: Retrieve repository
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.12.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
       - name: schemachange dry-run
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
@@ -51,6 +63,18 @@ jobs:
     needs: [setup, schemachange_dryrun]
     runs-on: ubuntu-latest
     steps:
+      # Check out repo under $GITHUB_WORKSPACE
+      - name: Retrieve repository
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.12.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
       - name: schemachange deploy
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
