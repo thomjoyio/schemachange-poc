@@ -7,9 +7,6 @@ on:
       - dev
     paths:
       - 'scripts/**'
-
-  workflow_dispatch:
-
 jobs:
   schema-change-job:
     runs-on: ubuntu-latest
