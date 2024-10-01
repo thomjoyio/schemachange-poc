@@ -8,13 +8,13 @@ on:
 jobs:
   test-env-var:
     runs-on: ubuntu-latest
-    environment: ${{ vars.ENVIRONMENT_STAGE }}                 
+    environment: ${{ vars.ENV_NAME }}                 
     steps:
       - name: Show env var
         run: |
-          echo $ENVIRONMENT_STAGE    
+          echo $ENV_NAME    
         env:
-          ENVIRONMENT_STAGE: ${{ vars.ENVIRONMENT_STAGE }}
+          ENV_NAME: ${{ vars.ENV_NAME }}
         
   setup-and-dry-run:
     runs-on: ubuntu-latest
