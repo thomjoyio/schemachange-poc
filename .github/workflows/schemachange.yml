@@ -44,7 +44,7 @@ jobs:
             -d $SNOWFLAKE_DATABASE
   
   schemachange_deploy:
-    needs: [setup, schemachange_dryrun]
+    needs: [setup]
     environment: dev
     runs-on: ubuntu-latest
     steps:
