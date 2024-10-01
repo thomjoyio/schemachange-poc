@@ -2,7 +2,7 @@ name: deploy_to_env
 
 # Triggers the action based on branch and path. 
 on:
-  pull-request:
+  pull_request:
     type: [closed]
     branches: [dev, st, uat, prod]
 
