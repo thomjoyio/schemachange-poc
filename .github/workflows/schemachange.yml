@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup :
+  setup-and-dry-run:
     runs-on: ubuntu-latest
     steps:
       # Check out repo under $GITHUB_WORKSPACE
@@ -44,7 +44,7 @@ jobs:
             -d $SNOWFLAKE_DATABASE
   
   schemachange_deploy:
-    needs: [setup]
+    needs: [setup-and-dry-run]
     environment: dev
     runs-on: ubuntu-latest
     steps:
