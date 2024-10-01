@@ -4,12 +4,17 @@ name: deploy_to_env
 on:
   pull_request:
     types: [closed]
-    branches: [dev, st, uat, prod]
+    branches:
+      - dev
+      - st
+      - uat
+      - prod
 
 jobs:   
   deploy_to_env:
     if: github.event.pull_request.merged == true
-    environment: ${{ vars.ENVIRONMENT_STAGE }}
+    #environment: ${{ vars.ENVIRONMENT_STAGE }}
+    environment: dev
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve repository
