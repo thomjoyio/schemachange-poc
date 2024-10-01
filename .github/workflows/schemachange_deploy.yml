@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       # Check out repo under $GITHUB_WORKSPACE
@@ -24,10 +24,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [setup]
-    steps:
       - name: Execute schemachange
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
