@@ -1,14 +1,10 @@
 name: schemachange
-run-name: schemachange ${{ inputs.deploy_target }} by @${{ github.actor }} (${{ github.event.workflow_run.head_commit.message }})
 
 # Triggers the action based on branch and path. 
 on:
   push:
     branches: [dev]
-  pull_request:
-    branches: [ dev ]
-
-  workflow_dispatch:
+  
 
 jobs:
   setup-and-dry-run:
@@ -44,6 +40,7 @@ jobs:
             -d $SNOWFLAKE_DATABASE
   
   schemachange-deploy:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     needs: [setup-and-dry-run]
     environment: dev
     runs-on: ubuntu-latest
