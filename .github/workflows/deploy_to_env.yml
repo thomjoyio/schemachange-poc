@@ -31,11 +31,11 @@ jobs:
             SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
             SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
             SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-            run: |
-              schemachange deploy -v \
-                -f scripts \
-                -a $SNOWFLAKE_ACCOUNT \
-                -u $SNOWFLAKE_USERNAME \
-                -r $SNOWFLAKE_ROLE \
-                -w $SNOWFLAKE_WAREHOUSE \
-                -d $SNOWFLAKE_DATABASE
+        run: |
+          schemachange deploy -v \
+            -f scripts \
+            -a $SNOWFLAKE_ACCOUNT \
+            -u $SNOWFLAKE_USERNAME \
+            -r $SNOWFLAKE_ROLE \
+            -w $SNOWFLAKE_WAREHOUSE \
+            -d $SNOWFLAKE_DATABASE
