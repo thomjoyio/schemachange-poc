@@ -1,4 +1,4 @@
-name: schemachange
+name: deploy_to_env
 
 # Triggers the action based on branch and path. 
 on:
@@ -7,7 +7,7 @@ on:
     branches: [dev, st, uat, prod]
 
 jobs:   
-  schemachange-deploy:
+  deploy_to_env:
     if: github.event.pull_request.merged == true
     environment: ${{ variables.DEPLOYMENT_ENVIRONMENT }}
     runs-on: ubuntu-latest
