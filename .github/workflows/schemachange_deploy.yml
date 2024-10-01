@@ -33,11 +33,12 @@ jobs:
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
-          schemachange deploy --dry-run \
+          schemachange deploy -v --dry-run \
             -f scripts \
             -a $SNOWFLAKE_ACCOUNT \
             -u $SNOWFLAKE_USERNAME \
             -r $SNOWFLAKE_ROLE \
             -w $SNOWFLAKE_WAREHOUSE \
-            -d $SNOWFLAKE_DATABASE
+            -d $SNOWFLAKE_DATABASE \
+            -c 'SCHEMACHANGE_METADATA'
             
