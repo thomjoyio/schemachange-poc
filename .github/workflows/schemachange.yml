@@ -6,6 +6,16 @@ on:
     branches: [feature/**, dev, st, uat, prod]
 
 jobs:
+  test-env-var:
+    runs-on: ubuntu-latest
+    environment: ${{ vars.ENVIRONMENT_STAGE }}                 
+    steps:
+      - name: Show env var
+        run: |
+          echo $ENVIRONMENT_STAGE    
+        env:
+          ENVIRONMENT_STAGE = ${{ vars.ENVIRONMENT_STAGE }}
+        
   setup-and-dry-run:
     runs-on: ubuntu-latest
     steps:
