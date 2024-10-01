@@ -9,7 +9,7 @@ on:
 jobs:   
   deploy_to_env:
     if: github.event.pull_request.merged == true
-    environment: ${{ vars.DEPLOYMENT_ENVIRONMENT }}
+    environment: ${{ vars.ENVIRONMENT_STAGE }}
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve repository
