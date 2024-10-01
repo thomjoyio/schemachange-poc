@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup:
+  setup :
     runs-on: ubuntu-latest
     steps:
       # Check out repo under $GITHUB_WORKSPACE
@@ -26,23 +26,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-  schemachange_dryrun:
-    needs: [setup]
-    runs-on: ubuntu-latest
-    steps:
-      # Check out repo under $GITHUB_WORKSPACE
-      - name: Retrieve repository
-        uses: actions/checkout@v4
-
-      - name: Set up python
-        uses: actions/setup-python@v2.2.1
-        with:
-          python-version: 3.12.x
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: schemachange dry-run
+      - name: schemachange dry run
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_USERNAME: ${{ secrets.SNOWFLAKE_USERNAME }}
@@ -61,6 +45,7 @@ jobs:
   
   schemachange_deploy:
     needs: [setup, schemachange_dryrun]
+    environment: dev
     runs-on: ubuntu-latest
     steps:
       # Check out repo under $GITHUB_WORKSPACE
