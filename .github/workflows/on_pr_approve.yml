@@ -1,6 +1,5 @@
 name: deploy_to_env
 
-# Triggers the action based on branch and path. 
 on:
   pull_request:
     types: [closed]
@@ -13,7 +12,7 @@ on:
 jobs:   
   deploy_to_env:
     if: github.event.pull_request.merged == true
-    #environment: ${{ vars.ENVIRONMENT_STAGE }}
+    needs: [setup-and-dry-run]
     environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
