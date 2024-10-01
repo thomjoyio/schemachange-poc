@@ -14,7 +14,7 @@ jobs:
         run: |
           echo $ENVIRONMENT_STAGE    
         env:
-          ENVIRONMENT_STAGE = ${{ vars.ENVIRONMENT_STAGE }}
+          ENVIRONMENT_STAGE: ${{ vars.ENVIRONMENT_STAGE }}
         
   setup-and-dry-run:
     runs-on: ubuntu-latest
