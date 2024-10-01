@@ -3,18 +3,19 @@ name: schemachange_deploy
 # Triggers the action based on branch and path. 
 on:
   push:
-    branches:
-      - dev
-    paths:
-      - 'scripts/**'
+    branches: [dev]
+    #paths: ['scripts/**']
+
+  workflow_dispatch:
+
 jobs:
-  schemachange_deploy:
+  setup:
     runs-on: ubuntu-latest
 
     steps:
       # Check out repo under $GITHUB_WORKSPACE
       - name: Retrieve repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Use Python 3.12.x
         uses: actions/setup-python@v2.2.1
@@ -24,6 +25,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+  deploy:
+    steps:
       - name: Execute schemachange
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
