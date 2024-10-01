@@ -43,12 +43,11 @@ jobs:
             -w $SNOWFLAKE_WAREHOUSE \
             -d $SNOWFLAKE_DATABASE
   
-  schemachange_deploy:
+  schemachange-deploy:
     needs: [setup-and-dry-run]
     environment: dev
     runs-on: ubuntu-latest
     steps:
-      # Check out repo under $GITHUB_WORKSPACE
       - name: Retrieve repository
         uses: actions/checkout@v4
 
