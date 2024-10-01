@@ -39,6 +39,4 @@ jobs:
             -u $SNOWFLAKE_USERNAME \
             -r $SNOWFLAKE_ROLE \
             -w $SNOWFLAKE_WAREHOUSE \
-            -d $SNOWFLAKE_DATABASE \
-            -c 'SCHEMACHANGE_METADATA.SCHEMACHANGE.CHANGE_HISTORY'
-            
+            -d $SNOWFLAKE_DATABASE
