@@ -37,7 +37,6 @@ jobs:
             -f scripts \
             -a $SNOWFLAKE_ACCOUNT \
             -u $SNOWFLAKE_USERNAME \
-            -p $SNOWFLAKE_PASSWORD \
             -r $SNOWFLAKE_ROLE \
             -w $SNOWFLAKE_WAREHOUSE \
             -d $SNOWFLAKE_DATABASE
