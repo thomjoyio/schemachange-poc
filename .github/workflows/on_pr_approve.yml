@@ -12,7 +12,6 @@ on:
 jobs:   
   deploy_to_env:
     if: github.event.pull_request.merged == true
-    needs: [setup-and-dry-run]
     environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
