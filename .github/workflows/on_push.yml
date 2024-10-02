@@ -1,0 +1,46 @@
+name: on_push
+
+# Triggers the action based on branch and path. 
+on:
+  push:
+    branches:
+      - feature/**
+      - dev
+      - st
+      - uat
+      - prod
+
+jobs:
+  setup-and-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out repo under $GITHUB_WORKSPACE
+      - name: Retrieve repository
+        uses: actions/checkout@v4
+
+      - name: Set up python
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.12.x
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: schemachange dry run
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USERNAME: ${{ secrets.SNOWFLAKE_USERNAME }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+        run: |
+          schemachange deploy -v --dry-run \
+            -f scripts \
+            -a $SNOWFLAKE_ACCOUNT \
+            -u $SNOWFLAKE_USERNAME \
+            -r $SNOWFLAKE_ROLE \
+            -w $SNOWFLAKE_WAREHOUSE \
+            -d $SNOWFLAKE_DATABASE
+  
+  
